@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ProfessorRepository {
-    Scanner scanner = new Scanner(System.in);
-    private String professorName,professorPhone,professorBirthdate,professorCPF, background, devArea, status;
-    int select=0;
+    private static Scanner scanner = new Scanner(System.in);
+    private  static String professorName,professorPhone,professorBirthdate,professorCPF, background, devArea, status;
+     private static int select=0;
 
-    public int createProfessor(List<Professor> professorList){
+    public static int createProfessor(List<Professor> professorList){
         System.out.println("Registering a Professor");
         System.out.println("Whats the Professor's name?");
         professorName = scanner.nextLine();
@@ -35,19 +35,18 @@ public class ProfessorRepository {
 
     }
 
-    public int getProfessorStatus(String name,List<Professor> professorList ) {
+    public static int getProfessorStatus(String status,List<Professor> professorList ) {
         System.out.println("~~ Verify Professor Registration Status ~~");
         for (int i = 0; i < professorList.size(); i++) {
             Professor professor = professorList.get(i);
-            if (professor.getName().equalsIgnoreCase(name)) {
-                System.out.println("Status for " + professor.getName() + ": " + professor.getStatus());
+            if (professor.getStatus().equalsIgnoreCase(status)) {
+                System.out.println("Professor:" + professor.getName() + " ~ Status:  "+ professor.getStatus());
             }
         }
-        System.out.println("Professor is not registered");
         return 0;
     }
 
-    public int getDevArea (String area, List<Professor> professorList){
+    public static int getDevArea (List<Professor> professorList){
         do {
             System.out.println("~~ Relatory of Professor for Development Area~~");
             System.out.println("Select an Area:");
@@ -56,9 +55,11 @@ public class ProfessorRepository {
             System.out.println("3 - Full-Stack");
             System.out.println("4 - All");
             System.out.println("0 - Return");
-            int option = Integer.parseInt(scanner.nextLine());
+            int select = Integer.parseInt(scanner.nextLine());
         }while (select !=0);
         switch(select){
+            case 0:
+                return 0;
             case 1:
                 for (int i = 0; i < professorList.size(); i++) {
                     Professor professor = professorList.get(i);
