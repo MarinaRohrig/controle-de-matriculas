@@ -1,4 +1,4 @@
-package main;
+package Tests;
 
 import models.Professor;
 import models.Registrable;

@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class ProfessorRepository {
     private static Scanner scanner = new Scanner(System.in);
     private  static String professorName,professorPhone,professorBirthdate,professorCPF, background, devArea, status;
-     private static int select=0, quantityProfessor;
+    private static int select=0, quantityProfessor;
 
     public static int createProfessor(List<Professor> professorList, int idPerson){
         System.out.println("\n~~ Registering A Professor ~~");
