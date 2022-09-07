@@ -5,9 +5,8 @@ public class Student extends Person implements Registrable {
     private int grade;
     private int calls = 0;
 
-    public Student (String registration, int grade, String name, String phone, String brithdate, String cpf ){
+    public Student ( int grade, String name, String phone, String brithdate, String cpf ){
         super(name,phone,brithdate,cpf);
-        this.registration = registration;
         this.grade = grade;
         this.calls++;
     }

@@ -11,8 +11,8 @@ public class Worker extends Person implements Registrable {
         return totalCalls;
     }
 
-    public void setTotalCalls(int totalCalls) {
-        this.totalCalls = totalCalls;
+    public void startCall() {
+        this.totalCalls += totalCalls;
     }
 
     @Override
