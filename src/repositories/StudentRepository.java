@@ -11,7 +11,7 @@ public class StudentRepository {
    private String studentName,studentRegistration,studentPhone,studentBirthdate,studentCPF;
     private int studentGrade;
 
-    public int createStudent(List<Student> studentList ){
+    public int createStudent(List<Student> studentList, int id ){
         //Student Register
         System.out.println("Registering a Student");
         System.out.println("Whats the Student's name?");
@@ -26,7 +26,7 @@ public class StudentRepository {
         studentBirthdate = scanner.nextLine();
         System.out.println("Whats " + studentName + "'s CPF?");
         studentCPF = scanner.nextLine();
-        Student student = new Student(studentGrade,studentName, studentPhone,studentBirthdate,studentCPF);
+        Student student = new Student(studentGrade,studentName, studentPhone,studentBirthdate,studentCPF, id);
         setStudentReg(student);
         studentList.add(student);
         return 0;

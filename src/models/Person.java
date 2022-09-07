@@ -7,12 +7,12 @@ public class Person {
     private String cpf;
     private int idPerson=0;
 
-    public Person (String name, String phone, String brithdate, String cpf){
+    public Person (String name, String phone, String birthdate, String cpf, int idPerson){
         this.setName(name);
         this.setPhone(phone);
         this.setBirthdate(birthdate);
         this.setCpf(cpf);
-        this.idPerson = 1;
+        this.idPerson = idPerson;
     }
 
     public String getName() {

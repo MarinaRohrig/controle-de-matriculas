@@ -5,8 +5,8 @@ public class Student extends Person implements Registrable {
     private int grade;
     private int calls = 0;
 
-    public Student ( int grade, String name, String phone, String brithdate, String cpf ){
-        super(name,phone,brithdate,cpf);
+    public Student ( int grade, String name, String phone, String birthdate, String cpf, int idPerson ){
+        super(name,phone,birthdate,cpf,idPerson);
         this.grade = grade;
         this.calls++;
     }
@@ -23,10 +23,6 @@ public class Student extends Person implements Registrable {
         return grade;
     }
 
-    public void setGrade(int grade) {
-        this.grade = grade;
-    }
-
     public int getCalls() {
         return calls;
     }
@@ -37,7 +33,7 @@ public class Student extends Person implements Registrable {
 
     @Override
     public String getInfo() {
-        return "Student Name: "+ this.getName() + "\nRegistration Status: " + this.getRegistration() + "\nGrade: " + this.getGrade() +
+        return "Student Name: "+ this.getName() + "\n Student ID:" + this.getIdPerson() +"\nRegistration Status: " + this.getRegistration() + "\nGrade: " + this.getGrade() +
                 "\nNumber of Calls: " + this.getCalls();
     }
 }

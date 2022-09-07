@@ -3,8 +3,8 @@ package models;
 public class Worker extends Person implements Registrable {
     private int totalCalls;
 
-    public Worker(String name, String phone, String brithdate, String cpf) {
-        super(name, phone, brithdate, cpf);
+    public Worker(String name, String phone, String birthdate, String cpf,int idPerson) {
+        super(name, phone, birthdate, cpf, idPerson);
     }
 
     public int getTotalCalls() {
@@ -17,6 +17,7 @@ public class Worker extends Person implements Registrable {
 
     @Override
     public String getInfo() {
-        return "Worker's name: " + this.getName();
+        return "Worker's name: " + this.getName() + "\nWorker's Phone: "+ this.getPhone() +"\nWorker's Birthdate: " + this.getBirthdate() +
+                "\nWorker's CPF: " + this.getCpf();
     }
 }
