@@ -1,23 +1,25 @@
 package models;
 
 public class Student extends Person implements Registrable {
-    private String registrationStatus;
+    private String registryStatus;
     private int grade;
     private int calls = 0;
 
-    public Student ( int grade, String name, String phone, String birthdate, String cpf, String status, int idPerson ){
+    public Student ( int grade, String name, String phone, String birthdate, String cpf, String registryStatus, int idPerson ){
         super(name,phone,birthdate,cpf,idPerson);
         this.grade = grade;
-        setRegistrationStatus(status);
-        this.calls++;
+        setRegistryStatus(registryStatus);
+       if (registryStatus.equalsIgnoreCase("Atendimento Pedagógico")){
+           this.calls++;
+       }
     }
 
-    public String getRegistrationStatus() {
-        return registrationStatus;
+    public String getRegistryStatus() {
+        return registryStatus;
     }
 
-    public void setRegistrationStatus(String registrationStatus) {
-        this.registrationStatus = registrationStatus;
+    public void setRegistryStatus(String registryStatus) {
+        this.registryStatus = registryStatus;
     }
 
     public int getGrade() {
@@ -34,7 +36,7 @@ public class Student extends Person implements Registrable {
 
     @Override
     public String getInfo() {
-        return "Student Name: "+ this.getName() + "\n Student ID:" + this.getIdPerson() +"\nRegistration Status: " + this.getRegistrationStatus() + "\nGrade: " + this.getGrade() +
-                "\nNumber of Calls: " + this.getCalls();
+        return "Nome do Estudante: "+ this.getName() + " | ID:" + this.getIdPerson() +" | Estado da Matrícula: " + this.getRegistryStatus() + " | Nota: " + this.getGrade() +
+                " | Número de Atendimento Pedagógicos: " + this.getCalls();
     }
 }
