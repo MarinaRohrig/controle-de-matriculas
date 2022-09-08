@@ -28,7 +28,28 @@ public class WorkerRepository {
         workerList.add(worker);
         return 0;
     }
+    public static void getWorkerList(List<Worker> workerList){
+        for (int i= 0; i<workerList.size(); i++){
+            System.out.println(workerList.get(i).getInfo());
+        }
+        if (workerList.isEmpty()){
+            System.out.println("Não existe pedagogo registrado.");
+        }
+    }
 
+    public static boolean workerExists(List<Worker> workerList, String name){
+        if (workerList.isEmpty()){
+            System.out.println("Pedagogo não registrado.");
+            return false;
+        }else{
+            for (int i=0; i < workerList.size(); i++){
+                Worker worker = workerList.get(i);
+                if (worker.getName().equalsIgnoreCase(name)){
+                    return
+                }
+            }
+        }
+    }
     public static void getMostCalls(List<Worker> workerList){
         Worker mostCallsWorker = new Worker("Dev","0","0","0",-1);
         for (int i = 0; i < workerList.size(); i++){

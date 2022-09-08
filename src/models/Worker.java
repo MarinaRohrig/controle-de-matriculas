@@ -1,7 +1,7 @@
 package models;
 
 public class Worker extends Person implements Registrable {
-    private int call=-1;
+    private int call=0;
 
     public Worker(String name, String phone, String birthdate, String cpf,int idPerson) {
         super(name, phone, birthdate, cpf, idPerson);
@@ -17,7 +17,6 @@ public class Worker extends Person implements Registrable {
 
     @Override
     public String getInfo() {
-        return "Nome do Pedagogo: " + this.getName() + " | Telefone: "+ this.getPhone() +" | Data de Nascimento: " + this.getBirthdate() +
-                " | CPF: " + this.getCpf();
+        return "Nome do Pedagogo: "+ this.getName() + " | ID: " + this.getIdPerson() +" | CPF: " +this.getCpf();
     }
 }

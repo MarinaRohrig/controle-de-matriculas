@@ -27,7 +27,6 @@ public class Professor extends Person implements Registrable{
 
     @Override
     public String getInfo() {
-        return "Nome do Professor: " + this.getName() + " | Telefone: "+this.getPhone()+ " | Data de Nascimento: "+this.getBirthdate()+" | CPF: " + this.getCpf() +
-                " | Formação Acadêmica: " + this.background +" | Área de Desenvolvimento: " + this.getDevArea() + " | Estado: " + this.getStatus();
+        return "Nome do Professor: "+ this.getName() + " | ID: " + this.getIdPerson() +" | CPF: " +this.getCpf();
     }
 }

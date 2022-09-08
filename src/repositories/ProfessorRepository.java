@@ -125,4 +125,12 @@ public class ProfessorRepository {
         }while (select !=0);
         return 0;
     }
+    public static void getProfessorList(List<Professor> professorList){
+        for (int i=0; i<professorList.size(); i++){
+            System.out.println(professorList.get(i).getInfo());
+        }
+        if (professorList.isEmpty()){
+            System.out.println("Não existe professor registrado.");
+        }
+    }
 }

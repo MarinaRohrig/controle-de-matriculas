@@ -36,7 +36,6 @@ public class Student extends Person implements Registrable {
 
     @Override
     public String getInfo() {
-        return "Nome do Estudante: "+ this.getName() + " | ID:" + this.getIdPerson() +" | Estado da Matrícula: " + this.getRegistryStatus() + " | Nota: " + this.getGrade() +
-                " | Número de Atendimento Pedagógicos: " + this.getCalls();
+        return "Nome do Aluno: "+ this.getName() + " | ID: " + this.getIdPerson() +" | CPF: " +this.getCpf();
     }
 }

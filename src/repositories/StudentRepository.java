@@ -27,7 +27,7 @@ public class StudentRepository {
         System.out.println("Qual a nota aluno?");
         System.out.println("...");
         studentGrade = Integer.parseInt(scanner.nextLine());
-        System.out.println("Qual o estado da matrícula aluno?");
+        System.out.println("Qual o estado da matrícula aluno? (Ativo, Irregular ou Inativo)");
         System.out.println("...");
         studentStatus = scanner.nextLine();
         Student student = new Student(studentGrade,studentName,studentPhone,studentBirthdate,studentCPF,studentStatus,id);
@@ -48,32 +48,42 @@ public class StudentRepository {
         return 0;
     }
 
-    private int changeStudentReg(String studentName,List<Student> studentList) {
-        System.out.println("~~ Mudar Estado Da Matrícula ~~");
+    public static int changeStudentReg(String studentName, List<Student> studentList) {
+        if (studentList.isEmpty()){
+            System.out.println("Não existe aluno registrado.");
+            return 0;
+        }
         for (int i=0; i<studentList.size(); i++){
             Student student = studentList.get(i);
             if(student.getName().equalsIgnoreCase(studentName)){
                 setStudentReg(student);
-                System.out.println("Estado de matrícula do aluno " +student.getName() +" alterado com sucesso.");
+                System.out.println("Estado de matrícula do aluno " +student.getName() +" alterado com sucesso.\n");
                 student.startCall();
             }else {
-                System.out.println("Aluno não está registrado");
+                System.out.println("Aluno não está registrado.");
             }
         }
         return 0;
     }
 
-    private void setStudentReg(Student student){
+    private static void setStudentReg(Student student){
         do {
-            System.out.println("Qual o estado de matrícula do aluno "+ student.getName() + "? (Ativo, Inativo, Irregular ou Atendimento Pedagógico)"+"\n..."
+            System.out.println("Qual o estado de matrícula do aluno "+ student.getName() + "? (Ativo, Inativo, Irregular ou Atendimento Pedagógico) "+"\n..."
                    );
             studentRegistration = scanner.nextLine();
         }while (!(studentRegistration.equalsIgnoreCase("ativo")|| studentRegistration.equalsIgnoreCase("inativo")
-                || studentRegistration.equalsIgnoreCase("irregular") || studentRegistration.equalsIgnoreCase("atendimento pedagógico") ||
-                studentRegistration.equalsIgnoreCase("atendimento pedagogico")));
+                || studentRegistration.equalsIgnoreCase("irregular") || studentRegistration.equalsIgnoreCase("atendimento pedagógico")
+        || studentRegistration.equalsIgnoreCase("atendimento pedagogico")));
+        if (studentRegistration.equalsIgnoreCase("atendimento pedagógico")
+                || studentRegistration.equalsIgnoreCase("atendimento pedagogico")){
+            student.startCall();
+        }
         student.setRegistryStatus(studentRegistration);
     }
-    public void getStudentList(List<Student> studentList) {
+    public static void getStudentList(List<Student> studentList) {
+        if (studentList.isEmpty()){
+            System.out.println("Não existe aluno registrado.");
+        }
         for (int i = 0; i < studentList.size(); i++) {
             System.out.println(studentList.get(i).getInfo());
         }
