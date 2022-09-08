@@ -16,7 +16,7 @@ public class Main {
         int select, id = 1;
 
         do {
-            System.out.println("~~ Bem-Vindo ao Sistema Automatizado da School Lab ~~");
+            System.out.println("\n~~ Bem-Vindo ao Sistema Automatizado da School Lab ~~");
             System.out.println("Digite uma opção:");
             System.out.println("1 - Registrar");
             System.out.println("2 - Mudar A Condição da Matrícula");
@@ -32,7 +32,7 @@ public class Main {
                 case 1:
                     //registry
                     do {
-                        System.out.println("~~ Registro ~~");
+                        System.out.println("\n~~ Registro ~~");
                         System.out.println("Digite uma opção:");
                         System.out.println("1 - Aluno");
                         System.out.println("2 - Professor");
@@ -42,7 +42,7 @@ public class Main {
                         select = Integer.parseInt(scanner.nextLine());
                         switch (select){
                             case 0:
-                            System.out.println("Voltando para o menu inicial...\n");
+                            System.out.println("Voltando para o menu inicial...");
                             break;
                             case 1:
                                 StudentRepository.createStudent(studentList,id);
@@ -75,16 +75,27 @@ public class Main {
                     StudentRepository.changeStudentReg(name,studentList);
                     break;
                 case 3:
-                    System.out.println("~~ Atendimento Pedagógico ~~");
+                    System.out.println("\n~~ Atendimento Pedagógico ~~");
                     System.out.println("Qual o nome do pedagogo?");
-
-                    System.out.println("Qual o nome do aluno?");
-
+                    String workerName = scanner.nextLine();
+                    int workerIndex = WorkerRepository.workerExists(workerList,workerName);
+                    if (workerIndex == -1){
+                        break;
+                    }else {
+                        System.out.println("Qual o nome do aluno?");
+                        String studentName = scanner.nextLine();
+                        int studentIndex = StudentRepository.studentExists(studentList,workerName);
+                        if (studentIndex == -1){
+                            break;
+                        }else{
+                            workerList.get(workerIndex).startCall();
+                            studentList.get(studentIndex).startCall();
+                        }
+                    }
                     break;
                 case 4:
                     do {
-                        System.out.println();
-                        System.out.println("~~ Relatórios ~~");
+                        System.out.println("\n~~ Relatórios ~~");
                         System.out.println("Digite uma opção:");
                         System.out.println("1 - Aluno");
                         System.out.println("2 - Professor");
@@ -101,7 +112,7 @@ public class Main {
                                 // relatórios do aluno
                                 break;
                             case 2:
-                                System.out.println("~~ Relatórios Do Professor ~~");
+                                System.out.println("\n~~ Relatórios Do Professor ~~");
                                 System.out.println("1 - Por status");
                                 System.out.println("2 - Por área de desenvolvimento");
                                 System.out.println("3 - Listar todos os professores");

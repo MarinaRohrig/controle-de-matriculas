@@ -1,22 +1,22 @@
 package models;
 
 public class Worker extends Person implements Registrable {
-    private int call=0;
+    private int calls =0;
 
     public Worker(String name, String phone, String birthdate, String cpf,int idPerson) {
         super(name, phone, birthdate, cpf, idPerson);
     }
 
-    public int getCall() {
-        return call;
+    public int getCalls() {
+        return calls;
     }
 
     public void startCall() {
-        this.call += call;
+        this.calls += calls;
     }
 
     @Override
     public String getInfo() {
-        return "Nome do Pedagogo: "+ this.getName() + " | ID: " + this.getIdPerson() +" | CPF: " +this.getCpf();
+        return "Nome do Pedagogo: "+ this.getName() + " | ID: " + this.getIdPerson() +" | CPF: " +this.getCpf() +" | Qtd Atendimentos: " +this.getCalls();
     }
 }

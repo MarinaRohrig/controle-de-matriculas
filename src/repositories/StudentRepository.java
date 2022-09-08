@@ -74,11 +74,26 @@ public class StudentRepository {
         }while (!(studentRegistration.equalsIgnoreCase("ativo")|| studentRegistration.equalsIgnoreCase("inativo")
                 || studentRegistration.equalsIgnoreCase("irregular") || studentRegistration.equalsIgnoreCase("atendimento pedagógico")
         || studentRegistration.equalsIgnoreCase("atendimento pedagogico")));
+
         if (studentRegistration.equalsIgnoreCase("atendimento pedagógico")
                 || studentRegistration.equalsIgnoreCase("atendimento pedagogico")){
             student.startCall();
         }
         student.setRegistryStatus(studentRegistration);
+    }
+
+    public static int studentExists(List<Student> studentList, String studentName){
+        if (studentList.isEmpty()){
+            System.out.println("Aluno não registrado, voltando para o menu inicial...");
+            return -1;
+        }
+        for (int i=0; i < studentList.size(); i++){
+            Student student = studentList.get(i);
+            if (student.getName().equalsIgnoreCase(studentName)){
+                return i;
+            }
+        }
+        return -1;
     }
     public static void getStudentList(List<Student> studentList) {
         if (studentList.isEmpty()){

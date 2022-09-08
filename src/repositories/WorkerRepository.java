@@ -36,28 +36,28 @@ public class WorkerRepository {
             System.out.println("Não existe pedagogo registrado.");
         }
     }
-
-    public static boolean workerExists(List<Worker> workerList, String name){
+    public static int workerExists(List<Worker> workerList, String workerName){
         if (workerList.isEmpty()){
-            System.out.println("Pedagogo não registrado.");
-            return false;
-        }else{
-            for (int i=0; i < workerList.size(); i++){
-                Worker worker = workerList.get(i);
-                if (worker.getName().equalsIgnoreCase(name)){
-                    return
-                }
+            System.out.println("Pedagogo não registrado, voltando para o menu inicial...");
+            return -1;
+        }
+        for (int i=0; i < workerList.size(); i++){
+            Worker worker = workerList.get(i);
+            if (worker.getName().equalsIgnoreCase(workerName)){
+                return i;
             }
         }
+        return -1;
     }
+
     public static void getMostCalls(List<Worker> workerList){
         Worker mostCallsWorker = new Worker("Dev","0","0","0",-1);
         for (int i = 0; i < workerList.size(); i++){
             Worker worker = workerList.get(i);
-            if (worker.getCall() > mostCallsWorker.getCall()){
+            if (worker.getCalls() > mostCallsWorker.getCalls()){
                 mostCallsWorker = worker;
             }
         }
-        System.out.println("Pedagogo com o maior número de atendimentos pedagógicos: "+mostCallsWorker.getName() + " | Quantidade de atendimentos: "+mostCallsWorker.getCall());
+        System.out.println("Pedagogo com o maior número de atendimentos pedagógicos: "+mostCallsWorker.getName() + " | Quantidade de atendimentos: "+mostCallsWorker.getCalls());
     }
 }
