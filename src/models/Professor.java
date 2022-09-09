@@ -1,6 +1,6 @@
 package models;
 
-public class Professor extends Person implements Registrable{
+public class Professor extends Person implements Registrable {
     private String background;
     private String devArea;
     private String status;
@@ -27,6 +27,6 @@ public class Professor extends Person implements Registrable{
 
     @Override
     public String toString() {
-        return String.format ("Nome do Professor: "+ this.getName() + " | ID: " + this.getIdPerson() +" | CPF: " +this.getCpf());
+        return String.format("Nome do Professor: " + this.getName() + " | ID: " + this.getIdPerson() + " | CPF: " + this.getCpf());
     }
 }

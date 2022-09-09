@@ -7,9 +7,9 @@ public abstract class Person {
     private String cpf;
 
     private static int lastID;
-    private int idPerson=0;
+    private int idPerson = 0;
 
-    public Person (String name, String phone, String birthdate, String cpf){
+    public Person(String name, String phone, String birthdate, String cpf) {
         this.setName(name);
         this.setPhone(phone);
         this.setBirthdate(birthdate);

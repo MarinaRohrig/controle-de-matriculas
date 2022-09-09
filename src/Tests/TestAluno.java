@@ -13,7 +13,7 @@ public class TestAluno {
         List<Student> studentList = new ArrayList<>();
         int select = 0;
         int id = 1;
-        do{
+        do {
             System.out.println("~~ Test For Student Class And Report ~~");
             System.out.println("Select an option:");
             System.out.println("1 - Registry");
@@ -21,7 +21,7 @@ public class TestAluno {
             System.out.println("0 - Exit");
             System.out.println("...");
             select = Integer.parseInt(scanner.nextLine());
-            switch(select){
+            switch (select) {
                 case 0:
                     System.out.println("Ending Program...");
                     break;
@@ -32,7 +32,7 @@ public class TestAluno {
                     id++;
                     break;
                 case 2:
-                    do{
+                    do {
                         System.out.println();
                         System.out.println("~~ Report ~~");
                         System.out.println("Select a Report:");
@@ -42,12 +42,12 @@ public class TestAluno {
                         System.out.println("...");
                         //implementar os reports
 
-                    }while (select!=0);
+                    } while (select != 0);
                     select = -1;
                 default:
                     break;
             }
-        }while (select !=0);
+        } while (select != 0);
         scanner.close();
     }
 }

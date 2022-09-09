@@ -8,10 +8,10 @@ import java.util.Scanner;
 public class WorkerRepository {
 
     private static Scanner scanner = new Scanner(System.in);
-    private static String workerName,workerPhone,workerBirthdate,workerCPF;
+    private static String workerName, workerPhone, workerBirthdate, workerCPF;
 
-    public static int createWorker(List<Worker> workerList){
-        System.out.println("\n~~ Registrando Um Pedagogo ~~");
+    public static int createWorker(List<Worker> workerList) {
+        System.out.println("\n~~ Cadastro de Pedagogo ~~");
         System.out.println("Qual o nome do pedagogo?");
         System.out.println("...");
         workerName = scanner.nextLine();
@@ -24,40 +24,71 @@ public class WorkerRepository {
         System.out.println("Qual o CPF do pedagogo?");
         System.out.println("...");
         workerCPF = scanner.nextLine();
-        Worker worker = new Worker(workerName,workerPhone,workerBirthdate,workerCPF);
+        Worker worker = new Worker(workerName, workerPhone, workerBirthdate, workerCPF);
         workerList.add(worker);
         return 0;
     }
-    public static void getWorkerList(List<Worker> workerList){
-        for (int i= 0; i<workerList.size(); i++){
-            System.out.println(workerList.get(i).toString());
+
+    public static void getWorkerList(List<Worker> workerList) {
+        if (workerList.isEmpty()) {
+            System.out.println("Não existe pedagogo cadastrado.");
         }
-        if (workerList.isEmpty()){
-            System.out.println("Não existe pedagogo registrado.");
+        for (int i = 0; i < workerList.size(); i++) {
+            System.out.println(workerList.get(i));
         }
+
     }
-    public static int workerExists(List<Worker> workerList, String workerName){
-        if (workerList.isEmpty()){
-            System.out.println("Pedagogo não registrado, voltando para o menu inicial...");
+
+    public static int workerExists(List<Worker> workerList, String workerName) {
+        if (workerList.isEmpty()) {
+            System.out.println("Pedagogo não cadastrado, voltando para o menu inicial...");
             return -1;
         }
-        for (int i=0; i < workerList.size(); i++){
+        for (int i = 0; i < workerList.size(); i++) {
             Worker worker = workerList.get(i);
-            if (worker.getName().equalsIgnoreCase(workerName)){
+            if (worker.getName().equalsIgnoreCase(workerName)) {
                 return i;
             }
         }
         return -1;
     }
 
-    public static void getMostCalls(List<Worker> workerList){
-        Worker mostCallsWorker = new Worker("Dev","0","0","0");
-        for (int i = 0; i < workerList.size(); i++){
+    public static void workerReport(List<Worker> workerList) {
+        int select;
+        if (workerList.isEmpty()) {
+            System.out.println("Não existe pedagogo cadastrado.");
+            return;
+        }
+        do {
+            System.out.println("\n ~~ Relatórios de Pedagogo ~~");
+            System.out.println("Digite uma opção:");
+            System.out.println("1 - Pedagogo com mais atendimentos pedagógicos");
+            System.out.println("2 - Todos Os Pedagogos");
+            System.out.println("0 - Voltar");
+            System.out.println("...");
+            select = Integer.parseInt(scanner.nextLine());
+            switch (select) {
+                case 0:
+                    break;
+                case 1:
+                    getMostCalls(workerList);
+                case 2:
+                    getWorkerList(workerList);
+            }
+        } while (select != 0);
+    }
+
+    public static void getMostCalls(List<Worker> workerList) {
+        if (workerList.isEmpty()) {
+            return;
+        }
+        Worker mostCallsWorker = new Worker("Dev", "0", "0", "0");
+        for (int i = 0; i < workerList.size(); i++) {
             Worker worker = workerList.get(i);
-            if (worker.getCalls() >= mostCallsWorker.getCalls()){
+            if (worker.getCalls() >= mostCallsWorker.getCalls()) {
                 mostCallsWorker = worker;
             }
         }
-        System.out.println("Pedagogo com o maior número de atendimentos pedagógicos: "+mostCallsWorker.getName() + " | Quantidade de atendimentos: "+mostCallsWorker.getCalls());
+        System.out.println(mostCallsWorker + " | Quantidade de atendimentos: " + mostCallsWorker.getCalls());
     }
 }
