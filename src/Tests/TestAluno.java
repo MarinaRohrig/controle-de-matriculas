@@ -27,7 +27,7 @@ public class TestAluno {
                     break;
                 case 1:
                     //registrar student
-                    StudentRepository.createStudent(studentList, id);
+                    StudentRepository.createStudent(studentList);
                     System.out.println();
                     id++;
                     break;

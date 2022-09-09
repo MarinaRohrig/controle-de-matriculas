@@ -1,18 +1,20 @@
 package models;
 
-public class Person {
+public abstract class Person {
     private String name;
     private String phone;
     private String birthdate;
     private String cpf;
+
+    private static int lastID;
     private int idPerson=0;
 
-    public Person (String name, String phone, String birthdate, String cpf, int idPerson){
+    public Person (String name, String phone, String birthdate, String cpf){
         this.setName(name);
         this.setPhone(phone);
         this.setBirthdate(birthdate);
         this.setCpf(cpf);
-        this.idPerson = idPerson;
+        this.idPerson = ++lastID;
     }
 
     public String getName() {

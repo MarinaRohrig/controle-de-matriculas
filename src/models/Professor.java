@@ -5,8 +5,8 @@ public class Professor extends Person implements Registrable{
     private String devArea;
     private String status;
 
-    public Professor(String name, String phone, String birthdate, String cpf,int idPerson, String backgroud, String devArea, String status) {
-        super(name, phone, birthdate, cpf, idPerson);
+    public Professor(String name, String phone, String birthdate, String cpf, String backgroud, String devArea, String status) {
+        super(name, phone, birthdate, cpf);
         this.background = backgroud;
         this.devArea = devArea;
         this.status = status;
@@ -26,7 +26,7 @@ public class Professor extends Person implements Registrable{
     }
 
     @Override
-    public String getInfo() {
-        return "Nome do Professor: "+ this.getName() + " | ID: " + this.getIdPerson() +" | CPF: " +this.getCpf();
+    public String toString() {
+        return String.format ("Nome do Professor: "+ this.getName() + " | ID: " + this.getIdPerson() +" | CPF: " +this.getCpf());
     }
 }

@@ -13,7 +13,10 @@ public class Main {
         List<Student> studentList = new ArrayList<>();
         List<Professor> professorList = new ArrayList<>();
         List<Worker> workerList = new ArrayList<>();
-        int select, id = 1;
+        StudentRepository studentRepository = new StudentRepository();
+        ProfessorRepository professorRepository = new ProfessorRepository();
+        WorkerRepository workerRepository = new WorkerRepository();
+        int select;
 
         do {
             System.out.println("\n~~ Bem-Vindo ao Sistema Automatizado da School Lab ~~");
@@ -45,21 +48,18 @@ public class Main {
                             System.out.println("Voltando para o menu inicial...");
                             break;
                             case 1:
-                                StudentRepository.createStudent(studentList,id);
+                                studentRepository.createStudent(studentList);
                                 System.out.println();
-                                id++;
                                 select=0;
                                 break;
                             case 2:
-                                ProfessorRepository.createProfessor(professorList, id);
+                                professorRepository.createProfessor(professorList);
                                 System.out.println();
-                                id++;
                                 select=0;
                                 break;
                             case 3:
-                                WorkerRepository.createWorker(workerList,id);
+                                workerRepository.createWorker(workerList);
                                 System.out.println();
-                                id++;
                                 select=0;
                                 break;
                             default:
@@ -72,19 +72,19 @@ public class Main {
                     System.out.println("Informe o nome do aluno que deseja editar a condição da matrícula");
                     System.out.println("...");
                     String name = scanner.nextLine();
-                    StudentRepository.changeStudentReg(name,studentList);
+                    studentRepository.changeStudentReg(name,studentList);
                     break;
                 case 3:
                     System.out.println("\n~~ Atendimento Pedagógico ~~");
                     System.out.println("Qual o nome do pedagogo?");
                     String workerName = scanner.nextLine();
-                    int workerIndex = WorkerRepository.workerExists(workerList,workerName);
+                    int workerIndex = workerRepository.workerExists(workerList,workerName);
                     if (workerIndex == -1){
                         break;
                     }else {
                         System.out.println("Qual o nome do aluno?");
                         String studentName = scanner.nextLine();
-                        int studentIndex = StudentRepository.studentExists(studentList,workerName);
+                        int studentIndex = studentRepository.studentExists(studentList,workerName);
                         if (studentIndex == -1){
                             break;
                         }else{
@@ -109,31 +109,29 @@ public class Main {
                                 System.out.println("Voltando para o menu inicial...\n");
                                 break;
                             case 1:
-                                // relatórios do aluno
+                                select = studentRepository.studentReport(studentList);
                                 break;
                             case 2:
-                                System.out.println("\n~~ Relatórios Do Professor ~~");
-                                System.out.println("1 - Por status");
-                                System.out.println("2 - Por área de desenvolvimento");
-                                System.out.println("3 - Listar todos os professores");
-                                System.out.println("0 - Voltar");
-                                System.out.println("...");
-
-                                // relatórios do professor
+                                select = professorRepository.professorReport(professorList);
                                 select=0;
                                 break;
                             case 3:
                                 // relatorios do pedagogo, mostra pedagogo com mais atendimentos
+                                do{
+                                    System.out.println("\n ~~ Relatórios de Pedagogo ~~");
+                                    System.out.println("Digite uma opção:");
+                                    System.out.println("1 - Pedagogo com mais atendimentos pedagógicos");
+                                }
                                 select=0;
                                 break;
                             case 4:
                                 // mostra tudãooo
                                 System.out.println("Alunos");
-                                StudentRepository.getStudentList(studentList);
+                                studentRepository.getStudentList(studentList);
                                 System.out.println("Professores");
-                                ProfessorRepository.getProfessorList(professorList);
+                                professorRepository.getProfessorList(professorList);
                                 System.out.println("Pedagogos");
-                                WorkerRepository.getWorkerList(workerList);
+                                workerRepository.getWorkerList(workerList);
                                 System.out.println();
                                 select=0;
                                 break;

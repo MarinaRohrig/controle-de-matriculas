@@ -10,7 +10,7 @@ public class WorkerRepository {
     private static Scanner scanner = new Scanner(System.in);
     private static String workerName,workerPhone,workerBirthdate,workerCPF;
 
-    public static int createWorker(List<Worker> workerList, int id ){
+    public static int createWorker(List<Worker> workerList){
         System.out.println("\n~~ Registrando Um Pedagogo ~~");
         System.out.println("Qual o nome do pedagogo?");
         System.out.println("...");
@@ -24,13 +24,13 @@ public class WorkerRepository {
         System.out.println("Qual o CPF do pedagogo?");
         System.out.println("...");
         workerCPF = scanner.nextLine();
-        Worker worker = new Worker(workerName,workerPhone,workerBirthdate,workerCPF,id);
+        Worker worker = new Worker(workerName,workerPhone,workerBirthdate,workerCPF);
         workerList.add(worker);
         return 0;
     }
     public static void getWorkerList(List<Worker> workerList){
         for (int i= 0; i<workerList.size(); i++){
-            System.out.println(workerList.get(i).getInfo());
+            System.out.println(workerList.get(i).toString());
         }
         if (workerList.isEmpty()){
             System.out.println("Não existe pedagogo registrado.");
@@ -51,10 +51,10 @@ public class WorkerRepository {
     }
 
     public static void getMostCalls(List<Worker> workerList){
-        Worker mostCallsWorker = new Worker("Dev","0","0","0",-1);
+        Worker mostCallsWorker = new Worker("Dev","0","0","0");
         for (int i = 0; i < workerList.size(); i++){
             Worker worker = workerList.get(i);
-            if (worker.getCalls() > mostCallsWorker.getCalls()){
+            if (worker.getCalls() >= mostCallsWorker.getCalls()){
                 mostCallsWorker = worker;
             }
         }

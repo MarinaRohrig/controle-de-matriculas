@@ -26,9 +26,8 @@ public class TestProfessor {
                     System.out.println("Ending Program...");
                     break;
                 case 1:
-                   ProfessorRepository.createProfessor(professorList, id);
+                   ProfessorRepository.createProfessor(professorList);
                     System.out.println();
-                   id++;
                     break;
                 case 2:
                     do{

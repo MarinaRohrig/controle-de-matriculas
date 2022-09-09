@@ -1,5 +1,5 @@
 package models;
 
 public interface Registrable {
-    String getInfo();
+    String toString();
 }

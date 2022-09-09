@@ -10,7 +10,7 @@ public class ProfessorRepository {
     private  static String professorName,professorPhone,professorBirthdate,professorCPF, background, devArea, status;
     private static int select=0, quantityProfessor;
 
-    public static int createProfessor(List<Professor> professorList, int idPerson){
+    public static int createProfessor(List<Professor> professorList){
         System.out.println("\n~~ Registrando Um Professor ~~");
         System.out.println("Qual o nome do professor?");
         System.out.println("...");
@@ -33,8 +33,39 @@ public class ProfessorRepository {
         System.out.println("O professor " + professorName + " está Ativo ou Inativo?");
         System.out.println("...");
         status = scanner.nextLine();
-        Professor professor1 = new Professor(professorName,professorPhone,professorBirthdate,professorCPF,idPerson,background,devArea,status );
+        Professor professor1 = new Professor(professorName,professorPhone,professorBirthdate,professorCPF, background,devArea,status );
         professorList.add(professor1);
+        return 0;
+    }
+
+    public static int professorReport(List<Professor> professorList){
+        do {
+            System.out.println("\n~~ Relatórios Do Professor ~~");
+            System.out.println("1 - Por status");
+            System.out.println("2 - Por área de desenvolvimento");
+            System.out.println("3 - Todos os Professores");
+            System.out.println("0 - Voltar");
+            System.out.println("...");
+            select = Integer.parseInt(scanner.nextLine());
+            switch (select) {
+                case 0:
+                    System.out.println("Voltando para o menu inicial.\n");
+                    break;
+                case 1:
+                    System.out.println("Informe o estado. (Ativo ou Inativo)");
+                    System.out.println("...");
+                    String status = scanner.nextLine();
+                    getProfessorStatus(status, professorList);
+                    System.out.println();
+                    break;
+                case 2:
+                    getDevArea(professorList);
+                    System.out.println();
+                    break;
+                default:
+                    break;
+            }
+        }while (select !=0);
         return 0;
     }
 
@@ -44,12 +75,12 @@ public class ProfessorRepository {
         for (int i = 0; i < professorList.size(); i++) {
             Professor professor = professorList.get(i);
             if (professor.getStatus().equalsIgnoreCase(status)) {
-                System.out.println(professor.getInfo());
+                System.out.println(professor.toString());
                 quantityProfessor++;
             }
-        }
-        if (quantityProfessor == 0){
-            System.out.println("Não existe professor para o estado informado");
+            if (quantityProfessor == 0){
+                System.out.println("Não existe professor para o estado informado");
+            }
         }
         return 0;
     }
@@ -74,12 +105,12 @@ public class ProfessorRepository {
                 for (int i = 0; i < professorList.size(); i++) {
                     Professor professor = professorList.get(i);
                     if (professor.getDevArea().equalsIgnoreCase("Front-End")) {
-                        System.out.println(professor.getInfo());
+                        System.out.println(professor.toString());
                         quantityProfessor++;
                     }
-                }
-                if (quantityProfessor == 0){
-                    System.out.println("Não existe professor para essa área.");
+                    if (quantityProfessor == 0){
+                        System.out.println("Não existe professor para essa área.");
+                    }
                 }
                 break;
             case 2:
@@ -87,12 +118,12 @@ public class ProfessorRepository {
                 for (int i = 0; i < professorList.size(); i++) {
                     Professor professor = professorList.get(i);
                     if (professor.getDevArea().equalsIgnoreCase("Back-End")) {
-                        System.out.println(professor.getInfo());
+                        System.out.println(professor.toString());
                         quantityProfessor++;
                     }
-                }
-                if (quantityProfessor == 0){
-                    System.out.println("Não existe professor para essa área.");
+                    if (quantityProfessor == 0){
+                        System.out.println("Não existe professor para essa área.");
+                    }
                 }
                 break;
             case 3:
@@ -100,19 +131,19 @@ public class ProfessorRepository {
                 for (int i = 0; i < professorList.size(); i++) {
                     Professor professor = professorList.get(i);
                     if (professor.getDevArea().equalsIgnoreCase("Full-Stack")) {
-                        System.out.println(professor.getInfo());
+                        System.out.println(professor.toString());
                         quantityProfessor++;
                     }
-                }
-                if (quantityProfessor == 0){
-                    System.out.println("Não existe professor para essa área.");
+                    if (quantityProfessor == 0){
+                        System.out.println("Não existe professor para essa área.");
+                    }
                 }
                 break;
             case 4:
                 System.out.println("\n~~ Professores Registrados ~~");
                 for (int i = 0; i < professorList.size(); i++) {
                     Professor professor = professorList.get(i);
-                    System.out.println(professor.getInfo());
+                    System.out.println(professor.toString());
                     quantityProfessor++;
                 }
                 if (quantityProfessor == 0){
@@ -126,11 +157,12 @@ public class ProfessorRepository {
         return 0;
     }
     public static void getProfessorList(List<Professor> professorList){
-        for (int i=0; i<professorList.size(); i++){
-            System.out.println(professorList.get(i).getInfo());
-        }
         if (professorList.isEmpty()){
             System.out.println("Não existe professor registrado.");
         }
+        for (int i=0; i<professorList.size(); i++){
+            System.out.println(professorList.get(i).toString());
+        }
+
     }
 }
