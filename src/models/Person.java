@@ -52,8 +52,5 @@ public abstract class Person {
     public int getIdPerson() {
         return idPerson;
     }
-
-    public void setIdPerson(int idPerson) {
-        this.idPerson = idPerson;
-    }
+    
 }

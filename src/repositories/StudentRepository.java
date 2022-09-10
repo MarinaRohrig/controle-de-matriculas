@@ -7,8 +7,8 @@ import java.util.Scanner;
 
 public class StudentRepository {
     private static Scanner scanner = new Scanner(System.in);
-    private static String studentName, studentPhone, studentBirthdate, studentCPF, studentRegistration, studentStatus;
-    private static int studentGrade;
+    private static String studentName, studentPhone, studentBirthdate, studentCPF, studentRegistration;
+    private static double studentGrade;
 
     public static int createStudent(List<Student> studentList) {
         System.out.println("\n~~ Cadastro de Aluno ~~");
@@ -24,25 +24,25 @@ public class StudentRepository {
         System.out.println("Qual o CPF do aluno?");
         System.out.println("...");
         studentCPF = scanner.nextLine();
-        System.out.println("Qual a nota aluno?");
-        System.out.println("...");
-        studentGrade = Integer.parseInt(scanner.nextLine());
+        do {
+            System.out.println("Qual a nota aluno? (Ex. 2.2)");
+            System.out.println("...");
+            studentGrade = Double.parseDouble(scanner.nextLine());
+        }while (studentGrade < 0 || studentGrade > 10);
         System.out.println("Qual o estado da matrícula aluno? (Ativo, Irregular ou Inativo)");
         System.out.println("...");
-        studentStatus = scanner.nextLine();
-        Student student = new Student(studentGrade, studentName, studentPhone, studentBirthdate, studentCPF, studentStatus);
+        studentRegistration = scanner.nextLine();
+        Student student = new Student(studentGrade, studentName, studentPhone, studentBirthdate, studentCPF, studentRegistration);
         studentList.add(student);
         return 0;
     }
 
-    public static void studentReport(List<Student> studentList) {
+    public static int studentReport(List<Student> studentList) {
         int select;
         if (studentList.isEmpty()) {
-            System.out.println("Não existe aluno cadastrado.");
-            return;
+            return -1;
         }
         do {
-            int quantityStudent = 0;
             System.out.println("\n~~ Relatório de Alunos ~~");
             System.out.println("Digite uma opção:");
             System.out.println("1 - Ativos");
@@ -56,20 +56,19 @@ public class StudentRepository {
             select = Integer.parseInt(scanner.nextLine());
             switch (select) {
                 case 0:
-                    System.out.println("Voltando para o menu inicial...");
-                    return;
+                    System.out.println("Voltando para o menu inicial");
+                    return 0;
                 case 1:
                     for (int i = 0; i < studentList.size(); i++) {
                         Student student = studentList.get(i);
                         if (student.getRegistryStatus().equalsIgnoreCase("ativo")) {
                             System.out.println("Alunos Ativos");
                             System.out.println(studentList.get(i));
-                            quantityStudent++;
+                            return 0;
                         }
-                        if (quantityStudent == 0) {
-                            System.out.println("Não existe aluno com esse estado.");
-                        }
+                        return -1;
                     }
+
                     break;
                 case 2:
                     for (int i = 0; i < studentList.size(); i++) {
@@ -77,12 +76,10 @@ public class StudentRepository {
                         if (student.getRegistryStatus().equalsIgnoreCase("irregular")) {
                             System.out.println("Alunos Irregulares");
                             System.out.println(studentList.get(i));
-                            quantityStudent++;
-                        }
-                        if (quantityStudent == 0) {
-                            System.out.println("Não existe aluno com esse estado.");
+                            return 0;
                         }
                     }
+                   return -1;
                     break;
                 case 3:
                     for (int i = 0; i < studentList.size(); i++) {
@@ -90,25 +87,22 @@ public class StudentRepository {
                         if (student.getRegistryStatus().equalsIgnoreCase("inativo")) {
                             System.out.println("Alunos Inativos");
                             System.out.println(studentList.get(i));
-                            quantityStudent++;
+                           return 0;
                         }
-                        if (quantityStudent == 0) {
-                            System.out.println("Não existe aluno com esse estado.");
-                        }
+                       return -1;
                     }
                     break;
                 case 4:
                     for (int i = 0; i < studentList.size(); i++) {
                         Student student = studentList.get(i);
-                        if (student.getRegistryStatus().equalsIgnoreCase("atendimento pedagogico")) {
+                        if (student.getRegistryStatus().equalsIgnoreCase("atendimento pedagogico")
+                                || student.getRegistryStatus().equalsIgnoreCase("atendimento pedagógico")) {
                             System.out.println("Alunos Em Atendimento Pedagógico");
                             System.out.println(studentList.get(i));
-                            quantityStudent++;
-                        }
-                        if (quantityStudent == 0) {
-                            System.out.println("Não existe aluno com esse estado.");
+                           return 0;
                         }
                     }
+                   return -1;
                     break;
                 case 5:
                     getMostCalls(studentList);
@@ -124,19 +118,18 @@ public class StudentRepository {
 
     public static int changeStudentReg(String studentName, List<Student> studentList) {
         if (studentList.isEmpty()) {
-            System.out.println("Não existe aluno cadastrado.");
-            return 0;
+            System.out.println("Não existe aluno cadastrado");
+            return -1;
         }
         for (int i = 0; i < studentList.size(); i++) {
             Student student = studentList.get(i);
             if (student.getName().equalsIgnoreCase(studentName)) {
                 setStudentReg(student);
                 System.out.println("Estado de matrícula do aluno " + student.getName() + " alterado com sucesso.\n");
-            } else {
-                System.out.println("Aluno não está cadastrado.");
+               return 0;
             }
         }
-        return 0;
+        return -1;
     }
 
     private static void setStudentReg(Student student) {
@@ -158,7 +151,6 @@ public class StudentRepository {
 
     public static int studentExists(List<Student> studentList, String studentName) {
         if (studentList.isEmpty()) {
-            System.out.println("Aluno não cadastrado, voltando para o menu inicial...");
             return -1;
         }
         for (int i = 0; i < studentList.size(); i++) {
@@ -172,7 +164,7 @@ public class StudentRepository {
 
     public static void getStudentList(List<Student> studentList) {
         if (studentList.isEmpty()) {
-            System.out.println("Não existe aluno cadastrado.");
+            System.out.println("Não existe aluno cadastrado");
         }
         for (int i = 0; i < studentList.size(); i++) {
             System.out.println(studentList.get(i));
@@ -180,14 +172,14 @@ public class StudentRepository {
     }
 
     public static void getMostCalls(List<Student> studentList) {
-        Student mostcallStudent = new Student(0, "Dev", "0", "0", "0", "0");
+        Student mostCallStudent = new Student(0.0, "Dev", "0", "0", "0", "0");
         for (int i = 0; i < studentList.size(); i++) {
             Student student = studentList.get(i);
-            if (student.getCalls() >= mostcallStudent.getCalls()) {
-                mostcallStudent = student;
+            if (student.getCalls() >= mostCallStudent.getCalls()) {
+                mostCallStudent = student;
             }
         }
-        System.out.println(mostcallStudent + " | Quantidade de atendimentos: " + mostcallStudent.getCalls());
+        System.out.println(mostCallStudent + " | Quantidade de atendimentos: " + mostCallStudent.getCalls());
     }
 }
 

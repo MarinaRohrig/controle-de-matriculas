@@ -21,10 +21,6 @@ public class Professor extends Person implements Registrable {
         return status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     @Override
     public String toString() {
         return String.format("Nome do Professor: " + this.getName() + " | ID: " + this.getIdPerson() + " | CPF: " + this.getCpf());

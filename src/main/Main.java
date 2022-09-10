@@ -50,17 +50,14 @@ public class Main {
                                 break;
                             case 1:
                                 studentRepository.createStudent(studentList);
-                                System.out.println();
                                 select = 0;
                                 break;
                             case 2:
                                 professorRepository.createProfessor(professorList);
-                                System.out.println();
                                 select = 0;
                                 break;
                             case 3:
                                 workerRepository.createWorker(workerList);
-                                System.out.println();
                                 select = 0;
                                 break;
                             default:
@@ -81,16 +78,19 @@ public class Main {
                     String workerName = scanner.nextLine();
                     int workerIndex = workerRepository.workerExists(workerList, workerName);
                     if (workerIndex == -1) {
+                        System.out.println("Pedagogo não cadastrado");
                         break;
                     } else {
                         System.out.println("Qual o nome do aluno?");
                         String studentName = scanner.nextLine();
                         int studentIndex = studentRepository.studentExists(studentList, studentName);
                         if (studentIndex == -1) {
+                            System.out.println("Aluno não cadastrado");
                             break;
                         } else {
                             workerList.get(workerIndex).startCall();
                             studentList.get(studentIndex).startCall();
+                            System.out.println("Pedido de atendimento pedagógico registrado");
                         }
                     }
                     break;
@@ -110,16 +110,17 @@ public class Main {
                                 System.out.println("Voltando para o menu inicial.\n");
                                 break;
                             case 1:
-                                studentRepository.studentReport(studentList);
-                                select = 0;
+                                if (studentRepository.studentReport(studentList) == -1){
+                                    System.out.println("Não existe aluno cadastrado");
+                                }else {
+                                    select = -1;
+                                }
                                 break;
                             case 2:
                                 professorRepository.professorReport(professorList);
-                                select = 0;
                                 break;
                             case 3:
                                 workerRepository.workerReport(workerList);
-                                select = 0;
                                 break;
                             case 4:
                                 System.out.println("Alunos");
@@ -129,7 +130,6 @@ public class Main {
                                 System.out.println("Pedagogos");
                                 workerRepository.getWorkerList(workerList);
                                 System.out.println();
-                                select = 0;
                                 break;
                             default:
                                 break;
