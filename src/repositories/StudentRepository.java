@@ -163,16 +163,22 @@ public class StudentRepository {
     }
 
     public static int studentExists(List<Student> studentList, String studentName) {
+        quantityStudent=0;
         if (studentList.isEmpty()) {
-            return -1;
+            System.out.println("Não existe aluno cadastrado");
+            return -2;
         }
         for (int i = 0; i < studentList.size(); i++) {
             Student student = studentList.get(i);
             if (student.getName().equalsIgnoreCase(studentName)) {
+                quantityStudent++;
                 return i;
             }
+            if (i == studentList.size()-1 && quantityStudent == 0){
+                System.out.println("Estudante não cadastrado");
+            }
         }
-        return -1;
+        return -2;
     }
 
     public static void getStudentList(List<Student> studentList) {
@@ -188,11 +194,11 @@ public class StudentRepository {
         Student mostCallStudent = new Student(0.0, "Dev", "0", "0", "0", "0");
         for (int i = 0; i < studentList.size(); i++) {
             Student student = studentList.get(i);
-            if (student.getCalls() >= mostCallStudent.getCalls()) {
+            if (student.getStudentCalls() >= mostCallStudent.getStudentCalls()) {
                 mostCallStudent = student;
             }
         }
-        System.out.println(mostCallStudent + " | Quantidade de atendimentos: " + mostCallStudent.getCalls());
+        System.out.println(mostCallStudent + " | Quantidade de atendimentos: " + mostCallStudent.getStudentCalls());
     }
 }
 

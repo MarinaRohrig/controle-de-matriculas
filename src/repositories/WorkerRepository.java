@@ -44,7 +44,7 @@ public class WorkerRepository {
         quantityWorker=0;
         if (workerList.isEmpty()) {
             System.out.println("Não existe pedagogo cadastrado");
-            return -1;
+            return -2;
         }
         for (int i = 0; i < workerList.size(); i++) {
             Worker worker = workerList.get(i);
@@ -56,7 +56,7 @@ public class WorkerRepository {
                 System.out.println("Pedagogo não cadastrado");
             }
         }
-        return -1;
+        return -2;
     }
 
     public static void workerReport(List<Worker> workerList) {
@@ -90,10 +90,10 @@ public class WorkerRepository {
         Worker mostCallsWorker = new Worker("Dev", "0", "0", "0");
         for (int i = 0; i < workerList.size(); i++) {
             Worker worker = workerList.get(i);
-            if (worker.getCalls() >= mostCallsWorker.getCalls()) {
+            if (worker.getWorkerCalls() >= mostCallsWorker.getWorkerCalls()) {
                 mostCallsWorker = worker;
             }
         }
-        System.out.println(mostCallsWorker + " | Quantidade de atendimentos: " + mostCallsWorker.getCalls());
+        System.out.println(mostCallsWorker + " | Quantidade de atendimentos: " + mostCallsWorker.getWorkerCalls());
     }
 }

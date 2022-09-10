@@ -1,18 +1,18 @@
 package models;
 
 public class Worker extends Person implements Registrable {
-    private int calls = 0;
+    private int workerCalls;
 
     public Worker(String name, String phone, String birthdate, String cpf) {
         super(name, phone, birthdate, cpf);
     }
 
-    public int getCalls() {
-        return calls;
+    public int getWorkerCalls() {
+        return workerCalls;
     }
 
     public void startCall() {
-        this.calls += calls;
+        this.workerCalls = ++workerCalls;
     }
 
     @Override

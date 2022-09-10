@@ -3,15 +3,12 @@ package models;
 public class Student extends Person implements Registrable {
     private String registryStatus;
     private double grade;
-    private int calls = 0;
+    private int studentCalls;
 
     public Student(Double grade, String name, String phone, String birthdate, String cpf, String registryStatus) {
         super(name, phone, birthdate, cpf);
         this.grade = grade;
         setRegistryStatus(registryStatus);
-        if (registryStatus.equalsIgnoreCase("Atendimento Pedagógico")) {
-            this.calls++;
-        }
     }
 
     public String getRegistryStatus() {
@@ -22,12 +19,12 @@ public class Student extends Person implements Registrable {
         this.registryStatus = registryStatus;
     }
 
-    public int getCalls() {
-        return calls;
+    public int getStudentCalls() {
+        return studentCalls;
     }
 
     public void startCall() {
-        this.calls += calls;
+        this.studentCalls = ++studentCalls;
         this.setRegistryStatus("Atendimento Pedagógico");
     }
 

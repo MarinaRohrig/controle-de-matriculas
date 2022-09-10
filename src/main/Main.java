@@ -77,15 +77,13 @@ public class Main {
                     System.out.println("Qual o nome do pedagogo?");
                     String workerName = scanner.nextLine();
                     int workerIndex = workerRepository.workerExists(workerList, workerName);
-                    if (workerIndex == -1) {
-                        System.out.println("Pedagogo não cadastrado");
+                    if (workerIndex == -2) {
                         break;
                     } else {
                         System.out.println("Qual o nome do aluno?");
                         String studentName = scanner.nextLine();
                         int studentIndex = studentRepository.studentExists(studentList, studentName);
-                        if (studentIndex == -1) {
-                            System.out.println("Aluno não cadastrado");
+                        if (studentIndex == -2) {
                             break;
                         } else {
                             workerList.get(workerIndex).startCall();
