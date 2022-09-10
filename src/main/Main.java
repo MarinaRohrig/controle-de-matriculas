@@ -107,14 +107,10 @@ public class Main {
                         select = Integer.parseInt(scanner.nextLine());
                         switch (select) {
                             case 0:
-                                System.out.println("Voltando para o menu inicial.\n");
+                                System.out.println("Voltando para o menu inicial");
                                 break;
                             case 1:
-                                if (studentRepository.studentReport(studentList) == -1){
-                                    System.out.println("Não existe aluno cadastrado");
-                                }else {
-                                    select = -1;
-                                }
+                                studentRepository.studentReport(studentList);
                                 break;
                             case 2:
                                 professorRepository.professorReport(professorList);

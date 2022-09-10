@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class ProfessorRepository {
     private static Scanner scanner = new Scanner(System.in);
     private static String professorName, professorPhone, professorBirthdate, professorCPF, background, devArea, status;
-    private static int select = 0, quantityProfessor;
+    private static int select = 0, quantityProfessor=0;
 
     public static int createProfessor(List<Professor> professorList) {
         System.out.println("\n~~ Cadastro De Professor ~~");
@@ -44,6 +44,7 @@ public class ProfessorRepository {
             return;
         }
         do {
+            quantityProfessor=0;
             System.out.println("\n~~ Relatórios Do Professor ~~");
             System.out.println("1 - Por estado");
             System.out.println("2 - Por área de desenvolvimento");
@@ -53,10 +54,10 @@ public class ProfessorRepository {
             select = Integer.parseInt(scanner.nextLine());
             switch (select) {
                 case 0:
-                    System.out.println("Voltando para o menu inicial.\n");
+                    System.out.println("Voltando para o menu inicial");
                     break;
                 case 1:
-                    System.out.println("Informe o estado. (Ativo ou Inativo)");
+                    System.out.println("Informe o estado (Ativo ou Inativo)");
                     System.out.println("...");
                     String status = scanner.nextLine();
                     getProfessorStatus(status, professorList);
@@ -64,6 +65,8 @@ public class ProfessorRepository {
                 case 2:
                     getDevArea(professorList);
                     break;
+                case 3:
+                    getProfessorList(professorList);
                 default:
                     break;
             }
@@ -79,11 +82,11 @@ public class ProfessorRepository {
                 System.out.println(professor);
                 quantityProfessor++;
             }
+            if (i == professorList.size()-1 && quantityProfessor ==0){
+                System.out.println("Não existe professor cadastrado");
+            }
         }
-        if (quantityProfessor == 0) {
-            System.out.println("Não existe professor para o estado informado");
-        }
-        return 0;
+        return -1;
     }
 
     public static int getDevArea(List<Professor> professorList) {
@@ -107,7 +110,10 @@ public class ProfessorRepository {
                         Professor professor = professorList.get(i);
                         if (professor.getDevArea().equalsIgnoreCase("Front-End")) {
                             System.out.println(professor);
-
+                            quantityProfessor++;
+                        }
+                        if (i == professorList.size() - 1 && quantityProfessor == 0) {
+                            System.out.println("Não existe professor cadastrado");
                         }
                     }
                     break;
@@ -117,12 +123,12 @@ public class ProfessorRepository {
                         Professor professor = professorList.get(i);
                         if (professor.getDevArea().equalsIgnoreCase("Back-End")) {
                             System.out.println(professor);
+                            quantityProfessor++;
                         }
-                        if (i < professorList.size()){
-                            break;
+                        if (i == professorList.size() - 1 && quantityProfessor == 0) {
+                            System.out.println("Não existe professor cadastrado");
                         }
                     }
-                    System.out.println("Não existe professor para essa área.");
                     break;
                 case 3:
                     System.out.println("\n~~ Professores Que Trabalham Com Full-Stack ~~");
@@ -130,17 +136,21 @@ public class ProfessorRepository {
                         Professor professor = professorList.get(i);
                         if (professor.getDevArea().equalsIgnoreCase("Full-Stack")) {
                             System.out.println(professor);
-                            return 0;
+                            quantityProfessor++;
+                        }
+                        if (i == professorList.size() - 1 && quantityProfessor == 0) {
+                            System.out.println("Não existe professor cadastrado");
                         }
                     }
-                    return -1;
+                    break;
                 case 4:
                     System.out.println("\n~~ Professores Cadastrados ~~");
                     for (int i = 0; i < professorList.size(); i++) {
                         Professor professor = professorList.get(i);
-                        System.out.println(professor + " | Trabalha Com: " +professor.getDevArea());
-                        if (i<professorList.size()) {
-                            return 0;
+                        System.out.println(professor + " | Área de Desenvolvimento: " + professor.getDevArea());
+                        quantityProfessor++;
+                        if (i == professorList.size()-1 && quantityProfessor ==0){
+                                System.out.println("Não existe professor cadastrado");
                         }
                     }
                     break;
@@ -148,12 +158,12 @@ public class ProfessorRepository {
                     break;
             }
         } while (select != 0);
-        return -2;
+        return -1;
     }
 
     public static void getProfessorList(List<Professor> professorList) {
         if (professorList.isEmpty()) {
-            System.out.println("Não existe professor cadastrado.");
+            System.out.println("Não existe professor cadastrado");
         }
         for (int i = 0; i < professorList.size(); i++) {
             System.out.println(professorList.get(i));
