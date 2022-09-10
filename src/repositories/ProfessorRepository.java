@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class ProfessorRepository {
     private static Scanner scanner = new Scanner(System.in);
     private static String professorName, professorPhone, professorBirthdate, professorCPF, background, devArea, status;
-    private static int select = 0, quantityProfessor=0;
+    private static int select = 0, quantityProfessor = 0;
 
     public static int createProfessor(List<Professor> professorList) {
         System.out.println("\n~~ Cadastro De Professor ~~");
@@ -44,7 +44,7 @@ public class ProfessorRepository {
             return;
         }
         do {
-            quantityProfessor=0;
+            quantityProfessor = 0;
             System.out.println("\n~~ Relatórios Do Professor ~~");
             System.out.println("1 - Por estado");
             System.out.println("2 - Por área de desenvolvimento");
@@ -82,7 +82,7 @@ public class ProfessorRepository {
                 System.out.println(professor);
                 quantityProfessor++;
             }
-            if (i == professorList.size()-1 && quantityProfessor ==0){
+            if (i == professorList.size() - 1 && quantityProfessor == 0) {
                 System.out.println("Não existe professor cadastrado");
             }
         }
@@ -149,8 +149,8 @@ public class ProfessorRepository {
                         Professor professor = professorList.get(i);
                         System.out.println(professor + " | Área de Desenvolvimento: " + professor.getDevArea());
                         quantityProfessor++;
-                        if (i == professorList.size()-1 && quantityProfessor ==0){
-                                System.out.println("Não existe professor cadastrado");
+                        if (i == professorList.size() - 1 && quantityProfessor == 0) {
+                            System.out.println("Não existe professor cadastrado");
                         }
                     }
                     break;

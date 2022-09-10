@@ -9,7 +9,7 @@ public class StudentRepository {
     private static Scanner scanner = new Scanner(System.in);
     private static String studentName, studentPhone, studentBirthdate, studentCPF, studentRegistration;
     private static double studentGrade;
-     private static int quantityStudent = 0;
+    private static int quantityStudent = 0;
 
     public static int createStudent(List<Student> studentList) {
         System.out.println("\n~~ Cadastro de Aluno ~~");
@@ -29,7 +29,7 @@ public class StudentRepository {
             System.out.println("Qual a nota aluno? (Ex. 2.2)");
             System.out.println("...");
             studentGrade = Double.parseDouble(scanner.nextLine());
-        }while (studentGrade < 0 || studentGrade > 10);
+        } while (studentGrade < 0 || studentGrade > 10);
         System.out.println("Qual o estado da matrícula aluno? (Ativo, Irregular ou Inativo)");
         System.out.println("...");
         studentRegistration = scanner.nextLine();
@@ -45,7 +45,7 @@ public class StudentRepository {
             return;
         }
         do {
-            quantityStudent=0;
+            quantityStudent = 0;
             System.out.println("\n~~ Relatório de Alunos ~~");
             System.out.println("Digite uma opção:");
             System.out.println("1 - Ativos");
@@ -69,7 +69,7 @@ public class StudentRepository {
                             System.out.println(studentList.get(i));
                             quantityStudent++;
                         }
-                        if (i == studentList.size()-1 && quantityStudent ==0){
+                        if (i == studentList.size() - 1 && quantityStudent == 0) {
                             System.out.println("Não existe aluno com esse estado");
                         }
                     }
@@ -82,7 +82,7 @@ public class StudentRepository {
                             System.out.println(studentList.get(i));
                             quantityStudent++;
                         }
-                        if (i == studentList.size()-1 && quantityStudent ==0){
+                        if (i == studentList.size() - 1 && quantityStudent == 0) {
                             System.out.println("Não existe aluno com esse estado");
                         }
                     }
@@ -95,7 +95,7 @@ public class StudentRepository {
                             System.out.println(studentList.get(i));
                             quantityStudent++;
                         }
-                        if (i == studentList.size()-1 && quantityStudent ==0){
+                        if (i == studentList.size() - 1 && quantityStudent == 0) {
                             System.out.println("Não existe aluno com esse estado");
                         }
                     }
@@ -109,7 +109,7 @@ public class StudentRepository {
                             System.out.println(studentList.get(i));
                             quantityStudent++;
                         }
-                        if (i == studentList.size()-1 && quantityStudent ==0){
+                        if (i == studentList.size() - 1 && quantityStudent == 0) {
                             System.out.println("Não existe aluno com esse estado");
                         }
                     }
@@ -138,7 +138,7 @@ public class StudentRepository {
                 System.out.println("Estado de matrícula do aluno " + student.getName() + " alterado com sucesso.\n");
                 quantityStudent++;
             }
-            if (i == studentList.size()-1 && quantityStudent ==0){
+            if (i == studentList.size() - 1 && quantityStudent == 0) {
                 System.out.println("Aluno não está cadastrado");
             }
         }
@@ -163,7 +163,7 @@ public class StudentRepository {
     }
 
     public static int studentExists(List<Student> studentList, String studentName) {
-        quantityStudent=0;
+        quantityStudent = 0;
         if (studentList.isEmpty()) {
             System.out.println("Não existe aluno cadastrado");
             return -2;
@@ -174,7 +174,7 @@ public class StudentRepository {
                 quantityStudent++;
                 return i;
             }
-            if (i == studentList.size()-1 && quantityStudent == 0){
+            if (i == studentList.size() - 1 && quantityStudent == 0) {
                 System.out.println("Estudante não cadastrado");
             }
         }

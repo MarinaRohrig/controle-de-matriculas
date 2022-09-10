@@ -9,7 +9,7 @@ public class WorkerRepository {
 
     private static Scanner scanner = new Scanner(System.in);
     private static String workerName, workerPhone, workerBirthdate, workerCPF;
-    private static int quantityWorker =0;
+    private static int quantityWorker = 0;
 
     public static int createWorker(List<Worker> workerList) {
         System.out.println("\n~~ Cadastro de Pedagogo ~~");
@@ -41,7 +41,7 @@ public class WorkerRepository {
     }
 
     public static int workerExists(List<Worker> workerList, String workerName) {
-        quantityWorker=0;
+        quantityWorker = 0;
         if (workerList.isEmpty()) {
             System.out.println("Não existe pedagogo cadastrado");
             return -2;
@@ -52,7 +52,7 @@ public class WorkerRepository {
                 quantityWorker++;
                 return i;
             }
-            if (i == workerList.size()-1 && quantityWorker ==0){
+            if (i == workerList.size() - 1 && quantityWorker == 0) {
                 System.out.println("Pedagogo não cadastrado");
             }
         }
