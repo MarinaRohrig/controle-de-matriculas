@@ -1,2 +1,2 @@
-# projeto-avaliativo 1 e 2 -futuroDev
+# projeto-avaliativo  2 
 Projeto avaliativo do módulo 2 do FuturoDev
